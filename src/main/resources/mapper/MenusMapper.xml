@@ -4,26 +4,33 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.entity.Menus">
-        <id column="mid" property="mid" />
-        <result column="mname" property="mname" />
-        <result column="pid" property="pid" />
+        <id column="m_id" property="mId" />
+<!--        <result column="m_name" property="mName" />-->
+<!--        <result column="m_pid" property="mPid" />-->
     </resultMap>
 
     <resultMap id="TreeMap" type="com.example.vo.MenusVo" extends="BaseResultMap">
-        <collection column="mid" property="children" ofType="com.example.entity.Menus" javaType="java.util.ArrayList" select="selMenuChildByMid"/>
+        <collection column="m_id" property="children" ofType="com.example.entity.Menus" javaType="java.util.ArrayList" select="selMenuChildByMid"/>
     </resultMap>
+    <!--
+        column:参数,数据库字段名
+        property:接收数据参数名
+        javaType:接收的类型
+        ofType:传入参数类型
+        select:查询
+    -->
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        mid, mname, pid
+        m_id, m_name, m_pid
     </sql>
 
     <select id="menusList" resultMap="TreeMap">
-        select * from menus where pid = 0
+        select * from menus where m_pid = 0
     </select>
 
     <select id="selMenuChildByMid" resultMap="TreeMap" parameterType="int">
-        select * from menus where pid = ${mid}
+        select * from menus where m_pid = ${mId}
     </select>
 
 

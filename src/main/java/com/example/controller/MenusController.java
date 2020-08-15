@@ -4,8 +4,9 @@ package com.example.controller;
 import com.example.service.IMenusService;
 import com.example.vo.MenusVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @author lzh
  * @since 2020-08-11
  */
-@Controller
+@RestController
 @RequestMapping("/menus")
 public class MenusController {
 
@@ -31,6 +32,17 @@ public class MenusController {
             System.out.println(menusVo);
         }
         return menusVos;
+    }
+
+    @RequestMapping("/testParam")
+//    public String testParam(@RequestBody Map<String, String> params) {
+    public String testParam(@RequestParam("monId") String monId,
+                            @RequestParam("edisId") String edisId) {
+//        String monId = params.get("monId");
+//        String edisId = params.get("edisId");
+        System.out.println("MonId:" + monId);
+        System.out.println("EDISId:" + edisId);
+        return monId + ", " + edisId;
     }
 
 }

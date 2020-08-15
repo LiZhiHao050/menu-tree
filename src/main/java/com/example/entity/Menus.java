@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -23,11 +24,12 @@ public class Menus implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    private Integer mid;
+    @TableId(value = "m_id")
+    private Integer mId;
 
-    private String mname;
+    private String mName;
 
-    private Integer pid;
+    private Integer mPid;
 
 
 }
